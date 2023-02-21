@@ -5,6 +5,7 @@ import { Checkbox, IconButton, Tooltip} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Card from '@mui/material/Card';
 import uuid from 'react-uuid';
+import { isAbsolute } from 'path';
 
 type props = {
     title : string | ''
@@ -107,7 +108,7 @@ function Right({title, todos, setTodos}: props) {
     const getListStyle = (isDraggingOver:any) => ({
         background: isDraggingOver ? "lightblue" : "lightgrey",
         padding: grid,
-        width: 500,
+        width: 450,
     });
 
     return <FormWrap>

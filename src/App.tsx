@@ -6,12 +6,30 @@ import Left from './components/Left/Left';
 import MiddleHeader from './components/Header/MiddleHeader';
 import styled from 'styled-components';
 import '@fontsource/roboto/400.css';
+import { FileUpload, FileUploadProps } from './components/File/FileUpload';
 
 import './App.css';
 
 type todoObjType = {
   id: string; date: string; todo: string; isDone: boolean;
 }
+
+const fileUploadProp: FileUploadProps = {
+  imageButton: true,
+  accept: 'image/*',
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+      if (
+          event.target.files !== null &&
+          event.target?.files?.length > 0
+      ) {
+          console.log(`Saving ${event.target.value}`)
+      }
+  },
+  onDrop: (event: React.DragEvent<HTMLElement>) => {
+      console.log(`Drop ${event.dataTransfer.files[0].name}`)
+  },
+}
+
 
 function App() {
 
@@ -32,6 +50,7 @@ function App() {
           <MiddleHeader></MiddleHeader>
           <ContainerWrap>
             <Left title= { title } setTitle= { setTitle }></Left>
+            <FileUpload {...fileUploadProp}/>
             <DashedBar></DashedBar>
             <DragDropContext onDragEnd={onDragEnd}>
               <Right title= { title } todos= {todos} setTodos= {setTodos}></Right>
